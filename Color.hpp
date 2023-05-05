@@ -8,6 +8,7 @@ namespace prog
   {
     private:
       // por exemplo, regras para assegurar que os valores são entre 0 e 255
+      unsigned char red_, green_, blue_;
     public:
       Color();
       Color(const Color& c);
