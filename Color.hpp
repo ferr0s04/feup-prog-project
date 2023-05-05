@@ -7,9 +7,7 @@ namespace prog
   class Color
   {
     private:
-      // int r;
-      // int g;
-      // int b;
+      // por exemplo, regras para assegurar que os valores são entre 0 e 255
     public:
       Color();
       Color(const Color& c);
