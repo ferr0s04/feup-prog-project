@@ -15,15 +15,15 @@ namespace prog {
     }
     
     rgb_value Color::red() const {
-        return 0;
+        return red_;
     }
     
     rgb_value Color::green() const {
-        return 0;
+        return green_;
     }
     
     rgb_value Color::blue() const {
-        return 0;
+        return blue_;
     }
 
     // TODO: remove this DUMMY variable once you have appropriate fields for representing colors.
