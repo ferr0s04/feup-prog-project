@@ -8,14 +8,20 @@ namespace prog {
 
     }
     Color::Color(rgb_value red, rgb_value green, rgb_value blue) {
-
+        // Possível implementação
+        red() = r;
+        green() = g;
+        blue() = b;
     }
+    
     rgb_value Color::red() const {
         return 0;
     }
+    
     rgb_value Color::green() const {
         return 0;
     }
+    
     rgb_value Color::blue() const {
         return 0;
     }
