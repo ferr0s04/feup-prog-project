@@ -7,7 +7,9 @@ namespace prog
   class Color
   {
     private:
-      // TODO
+      // int r;
+      // int g;
+      // int b;
     public:
       Color();
       Color(const Color& c);
