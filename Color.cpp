@@ -4,7 +4,7 @@ namespace prog {
     Color::Color() {
 
     }
-    Color::Color(const Color& other) : red_(other.red_), green_(other.green_), blue_(other.blue_) {}
+    Color::Color(const Color& other) : red_(other.red_), green_(other.green_), blue_(other.blue_) {} // Copy constructor
     
     Color::Color(rgb_value red, rgb_value green, rgb_value blue) : red_(red), green_(green), blue_(blue) {}
     
