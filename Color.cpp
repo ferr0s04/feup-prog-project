@@ -7,12 +7,7 @@ namespace prog {
     Color::Color(const Color& other) {
 
     }
-    Color::Color(rgb_value red, rgb_value green, rgb_value blue) {
-        // Possível implementação
-        red() = r;
-        green() = g;
-        blue() = b;
-    }
+    Color::Color(rgb_value red, rgb_value green, rgb_value blue) : red_(red), green_(green), blue_(blue) {}
     
     rgb_value Color::red() const {
         return red_;
