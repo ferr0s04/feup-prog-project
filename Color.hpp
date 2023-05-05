@@ -7,7 +7,6 @@ namespace prog
   class Color
   {
     private:
-      // por exemplo, regras para assegurar que os valores são entre 0 e 255
       rgb_value red_, green_, blue_;
     public:
       Color();
