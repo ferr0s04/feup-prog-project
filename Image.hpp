@@ -7,7 +7,8 @@ namespace prog
   class Image
   {
   private:
-    // TODO: define private fields for image state
+    int width_, height_;   // Largura e altura
+    Color **data_;         // Um array de duas dimensões para guardar a cor de cada pixel na imagem
   public:
     Image(int w, int h, const Color &fill = {255, 255, 255});
     ~Image();
