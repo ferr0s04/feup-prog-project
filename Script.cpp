@@ -76,6 +76,18 @@ namespace prog {
                 add();
                 continue;
             }
+            if (command == "crop") {
+                crop();
+                continue;
+            }
+            if (command == "rotate_left") {
+                rotateLeft();
+                continue;
+            }
+            if (command == "rotate_right") {
+                rotateRight();
+                continue;
+            }
 
         }
     }
@@ -116,5 +128,11 @@ namespace prog {
     void Script::vMirror() {
     }
     void Script::add() {
+    }
+    void Script::crop() {
+    }
+    void Script::rotateLeft() {
+    }
+    void Script::rotateRight() {
     }
 }
