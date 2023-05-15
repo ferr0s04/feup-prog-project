@@ -7,19 +7,20 @@ namespace prog {
     
     Color::Color(rgb_value red, rgb_value green, rgb_value blue) : red_(red), green_(green), blue_(blue) {}
     
+    // Funções apenas para leitura
     rgb_value Color::red() const {
-        return 0;
+        return red_;
     }
     
     rgb_value Color::green() const {
-        return 0;
+        return green_;
     }
     
     rgb_value Color::blue() const {
-        return 0;
+        return blue_;
     }
 
-    // Usando os private fields red_, green_ e blue_
+    // Funções para leitura e escrita
     rgb_value& Color::red()  {
         return red_;
     }
