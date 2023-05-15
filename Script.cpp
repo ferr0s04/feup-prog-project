@@ -52,7 +52,30 @@ namespace prog {
                 invert();
                 continue;
             }
-            // other - TODO
+            if (command == "to_gray_scale") {
+                toGrayScale();
+                continue;
+            }
+            if (command == "replace") {
+                replace();
+                continue;
+            }
+            if (command == "fill") {
+                fill();
+                continue;
+            }
+            if (command == "h_mirror") {
+                hMirror();
+                continue;
+            }
+            if (command == "v_mirror") {
+                vMirror();
+                continue;
+            }
+            if (command == "add") {
+                add();
+                continue;
+            }
 
         }
     }
@@ -76,5 +99,22 @@ namespace prog {
         string filename;
         input >> filename;
         saveToPNG(filename, image);
+    }
+    void Script::invert() {
+        // Each pixel (r, g, b) is transformed to (255 - r, 255 - g, 255 - b)
+    }
+    void Script::toGrayScale() {
+        // Each pixel (r, g, b) is transformed to (v, v, v), where v = (r + g + b)/3
+    }
+    void Script::replace() {
+        // Replace all (r1, g1, b1) by (r2, g2, b2)
+    }
+    void Script::fill() {
+    }
+    void Script::hMirror() {
+    }
+    void Script::vMirror() {
+    }
+    void Script::add() {
     }
 }
