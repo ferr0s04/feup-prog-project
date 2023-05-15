@@ -157,10 +157,48 @@ namespace prog {
     }
     }
     void Script::fill() {
+        int x, y, w, h, r, g, b;
+        input >> x >> y >> w >> h >> r >> g >> b;
+
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                int posX = x + i;
+                int posY = y + j;
+
+                Color& pixel = (*image).at(posX, posY);
+                pixel.red() = r;
+                pixel.green() = g;
+                pixel.blue() = b;
+        }
+    }
     }
     void Script::hMirror() {
+        int width = image->width();
+        int height = image->height();
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width / 2; x++) {
+                Color& left_pixel = (*image).at(x, y);
+                Color& right_pixel = (*image).at(width - 1 - x, y);
+                swap(left_pixel.red(), right_pixel.red());
+                swap(left_pixel.green(), right_pixel.green());
+                swap(left_pixel.blue(), right_pixel.blue());
+        }
+    }
     }
     void Script::vMirror() {
+       int width = image->width();
+        int height = image->height();
+
+        for (int y = 0; y < height / 2; y++) {
+            for (int x = 0; x < width; x++) {
+                Color& top_pixel = (*image).at(x, y);
+                Color& bottom_pixel = (*image).at(x, height - 1 - y);
+                swap(top_pixel.red(), bottom_pixel.red());
+                swap(top_pixel.green(), bottom_pixel.green());
+                swap(top_pixel.blue(), bottom_pixel.blue());
+        }
+    } 
     }
     void Script::add() {
         string filename;
