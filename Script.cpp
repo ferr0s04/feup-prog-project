@@ -118,7 +118,7 @@ namespace prog {
         int height = image->height();
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                Color& pixel = (*image)(x, y);
+                Color& pixel = (*image).at(x, y);
                 pixel.red() = 255 - pixel.red();
                 pixel.green() = 255 - pixel.green();
                 pixel.blue() = 255 - pixel.blue();
@@ -131,7 +131,7 @@ namespace prog {
         int height = image->height();
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                Color& pixel = (*image)(x, y);
+                Color& pixel = (*image).at(x, y);
                 int gray = (pixel.red() + pixel.green() + pixel.blue()) / 3;
                 pixel.red() = gray;
                 pixel.green() = gray;
@@ -147,7 +147,7 @@ namespace prog {
         int height = image->height();
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                Color& pixel = (*image)(x, y);
+                Color& pixel = (*image).at(x, y);
                 if (pixel.red() == r1 && pixel.green() == g1 && pixel.blue() == b1) {
                     pixel.red() = r2;
                     pixel.green() = g2;
@@ -176,11 +176,11 @@ namespace prog {
 
             for (int j = 0; j < addedHeight; j++) {
                 for (int i = 0; i < addedWidth; i++) {
-                    Color& srcPixel = (*addedImage)(i, j);
+                    Color& srcPixel = (*addedImage).at(i, j);
                     int destX = x + i;
                     int destY = y + j;
                     if (destX >= 0 && destX < imageWidth && destY >= 0 && destY < imageHeight) {
-                        Color& destPixel = (*image)(destX, destY);
+                        Color& destPixel = (*image).at(destX, destY);
                         if (srcPixel.red() != r || srcPixel.green() != g || srcPixel.blue() != b) {
                             destPixel = srcPixel;
                     }
@@ -204,8 +204,8 @@ namespace prog {
             Image* croppedImage = new Image(w, h);
             for (int j = 0; j < h; j++) {
                 for (int i = 0; i < w; i++) {
-                    Color& srcPixel = (*image)(x + i, y + j);
-                    Color& destPixel = (*croppedImage)(i, j);
+                    Color& srcPixel = (*image).at(x + i, y + j);
+                    Color& destPixel = (*croppedImage).at(i, j);
                     destPixel = srcPixel;
             }
         }
@@ -219,8 +219,8 @@ namespace prog {
         Image* rotatedImage = new Image(height, width);
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                Color& srcPixel = (*image)(x, y);
-                Color& destPixel = (*rotatedImage)(height - 1 - y, x);
+                Color& srcPixel = (*image).at(x, y);
+                Color& destPixel = (*rotatedImage).at(height - 1 - y, x);
                 destPixel = srcPixel;
             }
         }
@@ -233,8 +233,8 @@ namespace prog {
         Image* rotatedImage = new Image(height, width);
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                Color& srcPixel = (*image)(x, y);
-                Color& destPixel = (*rotatedImage)(y, width - 1 - x);
+                Color& srcPixel = (*image).at(x, y);
+                Color& destPixel = (*rotatedImage).at(y, width - 1 - x);
                 destPixel = srcPixel;
             }
         }
