@@ -10,4 +10,4 @@ ____A FAZER____
 ____JÁ FEITO____
 
 - Classes Color e Image
-- Suporte para comandos de manipulação de imagens e alteração de dimensões, implementado no Script.cpp
+- Suporte para comandos de manipulação de imagens e alteração de dimensões, implementado no Script.cpp (tabelas 7 e 8 da descrição do projeto no Moodle)
