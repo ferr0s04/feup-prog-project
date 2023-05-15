@@ -291,7 +291,7 @@ namespace prog {
         delete image;
         image = rotatedImage;
     }
-    // TODO
+    // TO DO 
     void Script::medianFilter() {
     }
     void Script::XPM2_Open() {
