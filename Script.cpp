@@ -48,7 +48,11 @@ namespace prog {
                 save();
                 continue;
             } 
-            // TODO ...
+            if (command == "invert") {
+                invert();
+                continue;
+            }
+            // other - TODO
 
         }
     }
