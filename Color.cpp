@@ -8,15 +8,15 @@ namespace prog {
     Color::Color(rgb_value red, rgb_value green, rgb_value blue) : red_(red), green_(green), blue_(blue) {}
     
     rgb_value Color::red() const {
-        return red_;
+        return 0;
     }
     
     rgb_value Color::green() const {
-        return green_;
+        return 0;
     }
     
     rgb_value Color::blue() const {
-        return blue_;
+        return 0;
     }
 
     // Usando os private fields red_, green_ e blue_
