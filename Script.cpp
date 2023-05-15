@@ -88,6 +88,18 @@ namespace prog {
                 rotateRight();
                 continue;
             }
+            if (command == "median_filter") {
+                medianFilter();
+                continue;
+            }
+            if (command == "xpm2_open") {
+                XPM2_Open();
+                continue;
+            }
+            if (command == "xpm2_save") {
+                XPM2_Save();
+                continue;
+            }
 
         }
     }
@@ -278,5 +290,11 @@ namespace prog {
         }
         delete image;
         image = rotatedImage;
+    }
+    void Script::medianFilter() {
+    }
+    void Script::XPM2_Open() {
+    }
+    void Script::XPM2_Save() {
     }
 }
