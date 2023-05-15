@@ -293,6 +293,8 @@ namespace prog {
     }
     // TO DO 
     void Script::medianFilter() {
+        int width = image->width();
+        int height = image->height();
     }
     void Script::XPM2_Open() {
     }
