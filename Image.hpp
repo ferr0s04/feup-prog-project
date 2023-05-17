@@ -1,6 +1,7 @@
 #ifndef __prog_Image_hpp__
 #define __prog_Image_hpp__
 #include "Color.hpp"
+#include <vector>
 
 namespace prog
 {
@@ -8,7 +9,7 @@ namespace prog
   {
   private:
     int width_, height_;   // Largura e altura
-    Color **data_;         // Um array de duas dimensões para guardar a cor de cada pixel na imagem
+    std::vector<std::vector<Color>> data_;         // Um array de duas dimensões para guardar a cor de cada pixel na imagem
   public:
     Image(int w, int h, const Color &fill = {255, 255, 255});
     ~Image();
