@@ -95,13 +95,16 @@ namespace prog {
                 continue;
             }
             if (command == "xpm2_open") {
-                XPM2_Open();
+                clear_image_if_any();
+                string filename;
+                input >> filename;
+                loadFromXPM2(filename);
                 continue;
             }
             if (command == "xpm2_save") {
-                XPM2_Save();
-                continue;
+
             }
+               
 
         }
     }
@@ -153,28 +156,34 @@ namespace prog {
             }
         }
     }
+
+    bool comparar(Color c1, Color c2) {
+        if (c1.red() == c2.red() && c1.green() == c2.green() && c1.blue() == c2.blue()) {
+            return true;
+        }
+        return false;
+    }
     void Script::replace() {
         // Replace all (r1, g1, b1) by (r2, g2, b2)
-        rgb_value r1, g1, b1, r2, g2, b2;
-        input >> r1 >> g1 >> b1 >> r2 >> g2 >> b2;
+        Color c1;
+        Color c2;
+        input >> c1 >> c2;
         int width = image->width();
         int height = image->height();
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Color& pixel = image -> at(x, y);
-                if (pixel.red() == r1 && pixel.green() == g1 && pixel.blue() == b1) {
-                    pixel.red() = r2;
-                    pixel.green() = g2;
-                    pixel.blue() = b2;
-                }
+                if (comparar(pixel, c1)) {
+                    pixel = c2;
+                } 
             }
         }
     }
     void Script::fill() {
         int x, y, w, h;
-        rgb_value r, g, b;
+        Color c;
 
-        input >> x >> y >> w >> h >> r >> g >> b;
+        input >> x >> y >> w >> h >> c;
 
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
@@ -182,9 +191,7 @@ namespace prog {
                 int posY = y + j;
 
                 Color& pixel = image-> at(posX, posY);
-                pixel.red() = r;
-                pixel.green() = g;
-                pixel.blue() = b;
+                pixel = c;
             }
         }
     }
@@ -219,8 +226,8 @@ namespace prog {
     void Script::add() {
         string filename;
         int x, y;
-        rgb_value r, g, b;
-        input >> filename >> r >> g >> b >> x >> y;
+        Color c;
+        input >> filename >> c >> x >> y;
 
         Image* addedImage = loadFromPNG(filename);
         if (addedImage != nullptr && image != nullptr) {
@@ -231,12 +238,12 @@ namespace prog {
 
             for (int j = 0; j < addedHeight; j++) {
                 for (int i = 0; i < addedWidth; i++) {
-                    Color& srcPixel = (*addedImage).at(i, j);
+                    Color& srcPixel = addedImage -> at(i, j);
                     int destX = x + i;
                     int destY = y + j;
                     if (destX >= 0 && destX < imageWidth && destY >= 0 && destY < imageHeight) {
                         Color& destPixel = image -> at(destX, destY);
-                        if (srcPixel.red() != r || srcPixel.green() != g || srcPixel.blue() != b) {
+                        if (!comparar(srcPixel, c)) {
                             destPixel = srcPixel;
                         }
                     }
@@ -268,20 +275,6 @@ namespace prog {
             image = croppedImage;
         }
     }
-    void Script::rotateLeft() {
-        int width = image->width();
-        int height = image->height();
-        Image* rotatedImage = new Image(height, width);
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                Color& srcPixel = image -> at(x, y);
-                Color& destPixel = (*rotatedImage).at(height - 1 - y, x);
-                destPixel = srcPixel;
-            }
-        }
-        delete image;
-        image = rotatedImage;
-    }
     void Script::rotateRight() {
         int width = image->width();
         int height = image->height();
@@ -289,18 +282,33 @@ namespace prog {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Color& srcPixel = image -> at(x, y);
-                Color& destPixel = (*rotatedImage).at(y, width - 1 - x);
+                Color& destPixel = rotatedImage -> at(height - 1 - y, x);
                 destPixel = srcPixel;
             }
         }
         delete image;
         image = rotatedImage;
     }
-    // TODO
+    void Script::rotateLeft() {
+        int width = image->width();
+        int height = image->height();
+        Image* rotatedImage = new Image(height, width);
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                Color& srcPixel = image -> at(x, y);
+                Color& destPixel = rotatedImage -> at(y, width - 1 - x);
+                destPixel = srcPixel;
+            }
+        }
+        delete image;
+        image = rotatedImage;
+    }
+
     void Script::medianFilter() {
         int width = image -> width();
         int height = image -> height();
         int ws;
+        input>>ws;
         Image* filteredImage = new Image(width, height);
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -310,10 +318,9 @@ namespace prog {
                 int endY = y + ws/2;
 
                 startX = max(0, startX);
-                endX = max(endX, width - 1);
+                endX = min(endX, width - 1);
                 startY = max(0, startY);
-                endY = max(endY, height - 1);
-
+                endY = min(endY, height - 1);
 
                 vector<Color> vizinhos;
                 for (int ny = startY; ny <= endY; ny++) {
@@ -324,12 +331,12 @@ namespace prog {
                 filteredImage->at(x, y) = Color :: Median(vizinhos);
             }
         }
+        delete image;
+        image = filteredImage;
+        
     }
+    
 
+    
 
-
-    void Script::XPM2_Open() {
-    }
-    void Script::XPM2_Save() {
-    }
 }
