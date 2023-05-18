@@ -98,11 +98,14 @@ namespace prog {
                 clear_image_if_any();
                 string filename;
                 input >> filename;
-                loadFromXPM2(filename);
+                image = loadFromXPM2(filename);
                 continue;
             }
             if (command == "xpm2_save") {
-
+                 string filename;
+                 input >> filename;
+                 saveToXPM2(filename, image);
+                 continue;
             }
                
 
