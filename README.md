@@ -3,5 +3,5 @@
 **Course**  
 Programming (PROG)
 
-**Contents**
+**Contents**  
 PROG Project for image manipulation, written in C++
