@@ -1,6 +1,7 @@
-# ProjetoProg
+# PROG 2022/23 - FEUP
 
-____A FAZER____
+**Course**  
+Programming (PROG)
 
-- Funções do XPM2.cpp
-
+**Contents**
+PROG Project for image manipulation, written in C++
